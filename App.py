@@ -16,7 +16,7 @@ dbCurrent = 'lol_val'
 conn = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='password',
+    password='password123',
     database= 'master'
 )
 
@@ -37,6 +37,7 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 # Function to check username and password
+
 def check_credentials():
     
     cursor = conn.cursor()
