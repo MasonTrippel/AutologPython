@@ -47,7 +47,7 @@ def check_credentials():
         messagebox.showinfo('Failure', 'Username not found')
     elif hash_password(password_var.get()) == result[0]:
         messagebox.showinfo('Success', 'Logged in successfully')
-
+        conn.database = 'lol_val'
         # Create list of accounts
         listbox = Listbox(root, font="Railway", bg="#C10D0D", fg="black", height=3, width=15, state='normal')
         listbox.grid(column=0, row=5)
