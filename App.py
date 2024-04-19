@@ -1,72 +1,24 @@
 import tkinter as tk
 from tkinter import *
 import mysql.connector
-import hashlib
-from tkinter import messagebox
 
-#initialize gui
 root = tk.Tk()
 root.title('LOL Auto Log')
 root.geometry('')
-canvas = tk.Canvas(root,width = 600,height = 300)
-canvas.grid(rowspan=10)
 
-dbCurrent = 'lol_val'
-#initialize sql connection
-conn = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='password',
-    database= 'master'
-)
+listbox = Listbox(root, font="Railway", bg="#C10D0D", fg="black", height=3, width=15)
+listbox.grid(column=0, row=2)
 
 
+accounts = ["Trippelindy", "Trippy", "SKTDopa"]
+for account in accounts:
+    listbox.insert(END, account)
 
 
-# Create username and password entry fields
-username_var = StringVar()
-password_var = StringVar()
-
-username_entry = Entry(root, textvariable=username_var)
-password_entry = Entry(root, textvariable=password_var, show='*')
-
-username_entry.grid(column=0, row=0)
-password_entry.grid(column=0, row=1)
-
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
-
-# Function to check username and password
-
-def check_credentials():
+def on_select(event):
+    index = event.widget.curselection()[0]
     
-    cursor = conn.cursor()
-    cursor.execute("SELECT password FROM users WHERE username = %s", (username_var.get(),))
-    result = cursor.fetchone()
 
-    if result is None:
-        messagebox.showinfo('Failure', 'Username not found')
-    elif hash_password(password_var.get()) == result[0]:
-        messagebox.showinfo('Success', 'Logged in successfully')
-        conn.database = 'lol_val'
-        # Create list of accounts
-        listbox = Listbox(root, font="Railway", bg="#C10D0D", fg="black", height=3, width=15, state='normal')
-        listbox.grid(column=0, row=5)
-
-        cursor.execute("Select username from usernamepass")
-
-        usernames = []
-        for row in cursor:
-            usernames.append(row[0])            
-
-    
-        for username in usernames:
-            listbox.insert(END, username)
-
-
-        def on_select(event):
-            index = event.widget.curselection()[0]
-            #add login function here
 
 
         listbox.bind('<<ListboxSelect>>', on_select)   
