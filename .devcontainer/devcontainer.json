@@ -1,0 +1,21 @@
+{
+    "name": "Python Project",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "args": { "VARIANT": "3.8" }
+    },
+    "runArgs": [ "-u", "vscode", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+    "settings": { 
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        "timonwong.shellcheck",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "ms-python.python"
+    ],
+    "forwardPorts": [80]
+}
