@@ -16,7 +16,7 @@ dbCurrent = 'lol_val'
 conn = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='mason123',
+    password='password',
     database= 'master'
 )
 
