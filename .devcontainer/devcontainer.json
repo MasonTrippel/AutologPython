@@ -14,8 +14,8 @@
         "ms-azuretools.vscode-docker",
         "timonwong.shellcheck",
         "ms-python.vscode-pylance",
-        "ms-python.python",
         "ms-python.python"
+
     ],
     "forwardPorts": [80]
 }
